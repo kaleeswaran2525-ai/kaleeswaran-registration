@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<center>
+
+    <h1>kaleeswaran</h1>
+    <h2>training | freshers guide</h2>
+
+    <p>
+        empowering your young developers to level up their skills
+        through training in software development technologies
+    </p>
+
+</center>
+
+<hr>
+
+<center>
+
+    <h1>registration form</h1>
+
+    <!-- FORM START -->
+    <form
+        action="/register"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <table>
+
+            <tr>
+                <td>name:</td>
+                <td>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="enter your name"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>age:</td>
+                <td>
+                    <input
+                        type="number"
+                        name="age"
+                        placeholder="enter your age"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>date of birth:</td>
+                <td>
+                    <input
+                        type="date"
+                        name="date_of_birth"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>address:</td>
+                <td>
+                    <input
+                        type="text"
+                        name="address"
+                        placeholder="enter your address"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>gender:</td>
+                <td>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        required
+                    >
+                    male
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="female"
+                    >
+                    female
+                </td>
+            </tr>
+
+            <tr>
+                <td>email:</td>
+                <td>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="enter your email"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>select a course:</td>
+                <td>
+                    <select name="course" required>
+                        <option value="python programming">
+                            python programming
+                        </option>
+
+                        <option value="java">
+                            java
+                        </option>
+
+                        <option value="c++">
+                            c++
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>upload your resume:</td>
+                <td>
+                    <input
+                        type="file"
+                        name="resume"
+                        accept=".pdf,.doc,.docx"
+                        required
+                    >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="reset">
+                </td>
+
+                <td>
+                    <input
+                        type="submit"
+                        value="Register"
+                    >
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+    <!-- FORM END -->
+
+    <hr>
+
+</center>
+
+<center>
+
+    <p>
+        <a href="index.html">Home</a>
+
+    </p>
+
+</center>
+
+</body>
+</html>
