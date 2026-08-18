@@ -3,6 +3,7 @@ const mysql = require("mysql2");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+require("dotenv").config();
 
 const app = express();
 
@@ -49,48 +50,14 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
 
         const uniqueName =
-            Date.now() +
-            "-" +
-            file.originalname;
+            Date.now() + "-" + file.originalname;
 
-        cb(pplication/pdf",
-            "application/msword",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        ];
-
-        if (allowedTypes.includes(file.mimetype)) {
-            cb(null, true);
-        } else {
-            cb(new Error("Only PDF, DOC and DOCX files are allowed!"));
-        }
+        cb(null, uniqueName);
     }
-});
-
-// ===============================
-// MySQL
-// ==============================
-
-require("dotenv").config();
-
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
-
-db.connect((err) => {
-    if (err) {
-        console.log("MySQL connection failed:", err);
-        return;
-    }
-
-    console.log("MySQL connected successfully!");
-});
 });
 
 const upload = multer({
+
     storage: storage,
 
     limits: {
@@ -100,7 +67,52 @@ const upload = multer({
     fileFilter: (req, file, cb) => {
 
         const allowedTypes = [
-            "a
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ];
+
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(
+                new Error(
+                    "Only PDF, DOC and DOCX files are allowed!"
+                )
+            );
+        }
+    }
+});
+
+// ===============================
+// MySQL
+// ===============================
+
+const db = mysql.createConnection({
+
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+
+});
+
+db.connect((err) => {
+
+    if (err) {
+
+        console.log(
+            "MySQL connection failed:",
+            err
+        );
+
+        return;
+    }
+
+    console.log(
+        "MySQL connected successfully!"
+    );
 });
 
 // ===============================
@@ -122,7 +134,9 @@ app.post(
             course
         } = req.body;
 
-        // Uploaded resume information
+        // ===============================
+        // Uploaded Resume
+        // ===============================
 
         let resumeFile = "";
 
@@ -311,7 +325,7 @@ app.post(
 `;
 
                 // ===============================
-                // Save HTML file
+                // Save HTML File
                 // ===============================
 
                 const fileName =
@@ -389,9 +403,10 @@ app.get("/", (req, res) => {
 // ===============================
 // Start Server
 // ===============================
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server running");
-});
 
-
-});
+app.listen(
+    process.env.PORT || 3000,
+    () => {
+        console.log("Server running");
+    }
+);
