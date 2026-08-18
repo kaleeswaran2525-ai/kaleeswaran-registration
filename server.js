@@ -53,21 +53,7 @@ const storage = multer.diskStorage({
             "-" +
             file.originalname;
 
-        cb(null, uniqueName);
-    }
-});
-
-const upload = multer({
-    storage: storage,
-
-    limits: {
-        fileSize: 5 * 1024 * 1024
-    },
-
-    fileFilter: (req, file, cb) => {
-
-        const allowedTypes = [
-            "application/pdf",
+        cb(pplication/pdf",
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ];
@@ -94,21 +80,27 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-
-
 db.connect((err) => {
-
     if (err) {
-        console.log(
-            "MySQL connection failed:",
-            err
-        );
+        console.log("MySQL connection failed:", err);
         return;
     }
 
-    console.log(
-        "MySQL connected successfully!"
-    );
+    console.log("MySQL connected successfully!");
+});
+});
+
+const upload = multer({
+    storage: storage,
+
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    },
+
+    fileFilter: (req, file, cb) => {
+
+        const allowedTypes = [
+            "a
 });
 
 // ===============================
@@ -397,7 +389,6 @@ app.get("/", (req, res) => {
 // ===============================
 // Start Server
 // ===============================
-
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server running");
 });
